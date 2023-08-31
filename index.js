@@ -5,6 +5,7 @@ let hScore = document.getElementById("hScore");
 let resume = document.getElementById("resume");
 let pause = document.getElementById("pause");
 let toggle = document.querySelector(".toggle");
+
 // Snake head,tail,body defining and initializing
 let [head, tail, ...body] = [104, 102, 103];
 // To reset the color of tail to white again, we make a copy of previous tail
@@ -23,6 +24,9 @@ for (let i = 0; i < 400; i++) {
   let div = document.createElement("div");
   box.appendChild(div);
 }
+[1, 20, 381, 400].forEach((i) => {
+  document.querySelector(`.box :nth-child(${i})`).style.borderRadius = "5px";
+});
 // initializing apple.
 // Function to create apple(random divs)
 let newApple = () => {
