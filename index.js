@@ -158,7 +158,7 @@ document.onkeydown = function (pressed) {
   createInterval(pressed);
 };
 
-// Stop resume and toggle stop/resume
+// Stop and resume the snake movement, And toggle stop/resume
 toggle.addEventListener("click", () => {
   console.log("Toggle called");
   if (resume.classList[0]) {
