@@ -5,36 +5,27 @@ let hScore = document.getElementById("hScore");
 let resume = document.getElementById("resume");
 let pause = document.getElementById("pause");
 let toggle = document.querySelector(".toggle");
+let reset = document.querySelector("#reset");
 
 // Snake head,tail,body defining and initializing
-let [head, tail, ...body] = [104, 102, 103];
+let [head, tail, ...body] = [];
 // To reset the color of tail to white again, we make a copy of previous tail
 let initalTail;
 let myInterval;
 let previous;
-let random = Math.ceil(Math.random() * 40);
+let div;
+let random = Math.ceil(Math.random() * 400);
 let opposite = {
   ArrowRight: "ArrowLeft",
   ArrowLeft: "ArrowRight",
   ArrowUp: "ArrowDown",
   ArrowDown: "ArrowUp",
 };
-// Creating 400 divs inside boxes
-for (let i = 0; i < 400; i++) {
-  let div = document.createElement("div");
-  box.appendChild(div);
-}
-[1, 20, 381, 400].forEach((i) => {
-  document.querySelector(`.box :nth-child(${i})`).style.borderRadius = "5px";
-});
-// initializing apple.
-// Function to create apple(random divs)
 let newApple = () => {
   while ([head, tail, ...body].includes(random))
-    random = Math.ceil(Math.random() * 40);
+    random = Math.ceil(Math.random() * 400);
   return random;
 };
-// Function to style snake's and apple's color
 let styleSnake = () => {
   document.querySelector(`.box :nth-child(${head})`).style.backgroundColor =
     "red";
@@ -53,9 +44,34 @@ let styleSnake = () => {
       `.box :nth-child(${initalTail})`
     ).style.backgroundColor = "rgb(206, 242, 242)";
 };
-// Initializing the snake and apple syle and position
-styleSnake();
-// Updating snake part which doesn't require condition
+let resetPage = () => {
+  box.innerHTML = "";
+  for (let i = 0; i < 400; i++) {
+    div = document.createElement("div");
+    box.appendChild(div);
+  }
+  [head, tail, ...body] = [104, 102, 103];
+  [1, 20, 381, 400].forEach((i) => {
+    document.querySelector(`.box :nth-child(${i})`).style.borderRadius = "5px";
+  });
+  pause.classList.remove("hide");
+  resume.classList.add("hide");
+  reset.classList.add("hide");
+  newApple();
+  styleSnake();
+};
+let pauseGame = () => {
+  resume.classList.remove("hide");
+  pause.classList.add("hide");
+  clearInterval(myInterval);
+};
+let resumeGame = () => {
+  pause.classList.remove("hide");
+  resume.classList.add("hide");
+  document.onkeydown = function (pressed) {
+    createInterval(pressed);
+  };
+};
 let updateScore = () => {
   scoreEl.innerHTML -= -10;
 };
@@ -129,6 +145,8 @@ let eatBody = () => {
   box.innerHTML = "<h1 class='gameOver'>Game Over! </h1>";
   clearInterval(myInterval);
   hScore.innerHTML = scoreEl.innerHTML;
+  pause.classList.add("hide");
+  reset.classList.remove("hide");
   console.log("Body eaten");
 };
 let hasPressedValid = (pressed, previous) => {
@@ -156,24 +174,30 @@ let createInterval = (pressed) => {
     pressed = { key: "ArrowRight" };
   myInterval = setInterval(() => moveSnake(pressed), 100);
 };
-
+resetPage();
 // KeyDown event hadler to move snake
 document.onkeydown = function (pressed) {
   createInterval(pressed);
 };
 
-// Stop and resume the snake movement, And toggle stop/resume
-toggle.addEventListener("click", () => {
-  console.log("Toggle called");
-  if (resume.classList[0]) {
-    resume.classList.remove("hide");
-    pause.classList.add("hide");
-    clearInterval(myInterval);
-  } else {
-    resume.classList.add("hide");
-    pause.classList.remove("hide");
-    document.onkeydown = function (pressed) {
-      createInterval(pressed);
-    };
-  }
+pause.addEventListener("click", pauseGame);
+
+resume.addEventListener("click", resumeGame);
+reset.addEventListener("click", () => {
+  resetPage();
+  document.onkeydown = function (pressed) {
+    createInterval(pressed);
+  };
 });
+document.onkeyup = function (events) {
+  if (events.key === " ") {
+    if (pause.classList[0] && reset.classList[0]) resumeGame();
+    else if (resume.classList[0] && reset.classList[0]) pauseGame();
+    else {
+      resetPage();
+      document.onkeydown = function (pressed) {
+        createInterval(pressed);
+      };
+    }
+  }
+};
