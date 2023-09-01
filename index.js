@@ -6,7 +6,11 @@ let resume = document.getElementById("resume");
 let pause = document.getElementById("pause");
 let toggle = document.querySelector(".toggle");
 let reset = document.querySelector("#reset");
-
+const apiUrl = " http://localhost:3000/obj";
+// Initializing highScore value based on condition
+if (localStorage.getItem("maxScore"))
+  hScore.innerHTML = localStorage.getItem("maxScore");
+else hScore.innerHTML = "0";
 // Snake head,tail,body defining and initializing
 let [head, tail, ...body] = [];
 // To reset the color of tail to white again, we make a copy of previous tail
@@ -46,6 +50,7 @@ let styleSnake = () => {
 };
 let resetPage = () => {
   box.innerHTML = "";
+  scoreEl.innerHTML = "0";
   for (let i = 0; i < 400; i++) {
     div = document.createElement("div");
     box.appendChild(div);
@@ -144,7 +149,15 @@ let isEatingBody = (keys) => {
 let eatBody = () => {
   box.innerHTML = "<h1 class='gameOver'>Game Over! </h1>";
   clearInterval(myInterval);
-  hScore.innerHTML = scoreEl.innerHTML;
+  // using local storage for storing highScore
+  if (
+    !localStorage.getItem("maxScore") ||
+    Number(localStorage.getItem("maxScore")) < scoreEl.innerHTML
+  ) {
+    localStorage.setItem("maxScore", scoreEl.innerHTML);
+    hScore.innerHTML = localStorage.getItem("maxScore");
+  }
+
   pause.classList.add("hide");
   reset.classList.remove("hide");
   console.log("Body eaten");

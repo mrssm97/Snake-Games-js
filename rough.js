@@ -355,5 +355,29 @@ p {
 //   city: "Buxar",
 // };
 // console.log(Object.values(employee)[1]);
-let pressed = { key: "ArrowRight" };
-console.log("move" + pressed.key.slice(pressed.key.indexOf("w") + 1) + "()");
+// let pressed = { key: "ArrowRight" };
+// console.log("move" + pressed.key.slice(pressed.key.indexOf("w") + 1) + "()");
+
+const apiUrl = " http://localhost:3000/obj"; // URL of the API endpoint
+let hScore;
+// Data to be sent to the server (in this example, we're sending JSON data)
+const postData = {
+  highScore: "100",
+};
+
+fetch(apiUrl, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(postData),
+});
+// .then((res) => res.json())
+// .then((data) => console.log("Data sent successfully:", data.highScore));
+fetch(apiUrl)
+  .then((res) => res.json())
+  .then((data) => {
+    hScore = data.highScore;
+    console.log(data);
+    console.log(hScore);
+  });
+
+console.log(hScore);
