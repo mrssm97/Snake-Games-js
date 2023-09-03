@@ -10,8 +10,8 @@
 }
 .mainBackground {
   z-index: 0;
-  height: 786px;
-  width: 1535px;
+  height: inherit;
+  width: inherit;
 }
 /* .back-img {
   position: absolute;
