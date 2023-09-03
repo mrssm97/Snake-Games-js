@@ -35,8 +35,8 @@
   border-radius: 3%;
   z-index: 1;
   position: absolute;
-  top: 90px;
-  left: 190px;
+  top: 20%;
+  left: 15%;
 }
 .center {
   height: 415px;
