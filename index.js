@@ -6,7 +6,6 @@ let resume = document.getElementById("resume");
 let pause = document.getElementById("pause");
 let toggle = document.querySelector(".toggle");
 let reset = document.querySelector("#reset");
-const apiUrl = " http://localhost:3000/obj";
 // Initializing highScore value based on condition
 if (localStorage.getItem("maxScore"))
   hScore.innerHTML = localStorage.getItem("maxScore");
@@ -194,7 +193,6 @@ document.onkeydown = function (pressed) {
 };
 
 pause.addEventListener("click", pauseGame);
-
 resume.addEventListener("click", resumeGame);
 reset.addEventListener("click", () => {
   resetPage();
