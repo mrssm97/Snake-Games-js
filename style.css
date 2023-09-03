@@ -2,6 +2,7 @@
 * {
   margin: 0;
   /* box-sizing: border-box; */
+  overflow: hidden;
 }
 .main {
   height: 100vh;
@@ -9,7 +10,7 @@
 }
 .mainBackground {
   z-index: 0;
-  height: 667px;
+  height: 786px;
   width: 1396px;
 }
 /* .back-img {
