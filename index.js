@@ -184,7 +184,7 @@ let createInterval = (pressed) => {
   previous = { key: pressed.key };
   if (!hasPressedValid(pressed.key, previous.key))
     pressed = { key: "ArrowRight" };
-  myInterval = setInterval(() => moveSnake(pressed), 100);
+  myInterval = setInterval(() => moveSnake(pressed), 200);
 };
 resetPage();
 // KeyDown event hadler to move snake
