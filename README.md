@@ -1,6 +1,6 @@
 # Snake-Games-js
  It's a simple snake game.
-# <---- FunctionalitY------>
+# <---- Functionality------>
 
 Press any key to start snake in rightward direction.
 Use Arrow keys(left,righ,up,down)to move snake in respective direction.
