@@ -114,7 +114,7 @@ button {
   color: white;
   background-color: transparent;
   font-family: "Black Ops One", cursive;
-  cursor: pointer;
+  /* cursor: pointer; */
   font-size: large;
 }
 .gameOver {

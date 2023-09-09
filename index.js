@@ -5,30 +5,33 @@ let hScore = document.getElementById("hScore");
 let resume = document.getElementById("resume");
 let pause = document.getElementById("pause");
 let toggle = document.querySelector(".toggle");
-let reset = document.querySelector("#reset");
-// Initializing highScore value based on condition
-if (localStorage.getItem("maxScore"))
-  hScore.innerHTML = localStorage.getItem("maxScore");
-else hScore.innerHTML = "0";
-// Snake head,tail,body defining and initializing
-let [head, tail, ...body] = [];
-// To reset the color of tail to white again, we make a copy of previous tail
+let restart = document.querySelector("#restart");
 let initalTail;
 let myInterval;
 let previous;
 let div;
+let speed;
+let pressed;
 let random = Math.ceil(Math.random() * 400);
+let [head, tail, ...body] = [];
 let opposite = {
   ArrowRight: "ArrowLeft",
   ArrowLeft: "ArrowRight",
   ArrowUp: "ArrowDown",
   ArrowDown: "ArrowUp",
 };
+// Initializing highScore value based on condition
+if (localStorage.getItem("maxScore"))
+  hScore.innerHTML = localStorage.getItem("maxScore");
+else hScore.innerHTML = "0";
+// Snake head,tail,body defining and initializing
+
 let newApple = () => {
   while ([head, tail, ...body].includes(random))
     random = Math.ceil(Math.random() * 400);
   return random;
 };
+
 let styleSnake = () => {
   document.querySelector(`.box :nth-child(${head})`).style.backgroundColor =
     "red";
@@ -47,9 +50,13 @@ let styleSnake = () => {
       `.box :nth-child(${initalTail})`
     ).style.backgroundColor = "rgb(206, 242, 242)";
 };
-let resetPage = () => {
+
+let restartPage = () => {
   box.innerHTML = "";
   scoreEl.innerHTML = "0";
+  pressed = {};
+  previous = {};
+  speed = 0;
   for (let i = 0; i < 400; i++) {
     div = document.createElement("div");
     box.appendChild(div);
@@ -60,52 +67,67 @@ let resetPage = () => {
   });
   pause.classList.remove("hide");
   resume.classList.add("hide");
-  reset.classList.add("hide");
+  restart.classList.add("hide");
   newApple();
   styleSnake();
 };
+
 let pauseGame = () => {
   resume.classList.remove("hide");
   pause.classList.add("hide");
   clearInterval(myInterval);
 };
+
 let resumeGame = () => {
   pause.classList.remove("hide");
   resume.classList.add("hide");
-  document.onkeydown = function (pressed) {
-    createInterval(pressed);
+
+  document.onkeydown = function (event) {
+    pressed = { key: event.key };
+    if (
+      Object.keys(opposite).includes(pressed.key) &&
+      !isEatingBody(pressed.key)
+    )
+      createInterval();
   };
 };
+
 let updateScore = () => {
   scoreEl.innerHTML -= -10;
 };
+
 let updateParts = () => {
   initalTail = tail;
   tail = body[0];
   body.push(head);
   body.shift();
 };
+
 // full update of snake body parts based upon direction
 let moveRight = () => {
   updateParts();
   if (head % 20 === 0) head -= 19;
   else head++;
 };
+
 let moveLeft = () => {
   updateParts();
   if ((head - 1) % 20 === 0) head += 19;
   else head--;
 };
+
 let moveUp = () => {
   updateParts();
   if (head < 21) head += 380;
   else head -= 20;
 };
+
 let moveDown = () => {
   updateParts();
   if (head > 380) head -= 380;
   else head += 20;
 };
+
 // Condition to check whether at the next move there is an apple or not
 let isEatingApple = (keys) => {
   if (keys === "ArrowRight")
@@ -117,6 +139,7 @@ let isEatingApple = (keys) => {
   else if (keys === "ArrowDown")
     return head > 380 ? head - 380 === random : head + 20 === random;
 };
+
 // updating snake body parts if it eats an apple.
 let eatApple = () => {
   body.push(head);
@@ -124,7 +147,13 @@ let eatApple = () => {
   newApple();
   updateScore();
   styleSnake();
+  if (speed <= 50) speed += 2;
+  else if (speed < 100) speed += 1;
+  clearInterval(myInterval);
+  createInterval();
+  // createInterval(pressed);
 };
+
 // Function to check whether next move is eating body or not
 let isEatingBody = (keys) => {
   if (keys === "ArrowRight")
@@ -144,6 +173,7 @@ let isEatingBody = (keys) => {
       ? [tail, ...body].includes(head - 380)
       : [tail, ...body].includes(head + 20);
 };
+
 // After eating body game over.
 let eatBody = () => {
   box.innerHTML = "<h1 class='gameOver'>Game Over! </h1>";
@@ -158,14 +188,16 @@ let eatBody = () => {
   }
 
   pause.classList.add("hide");
-  reset.classList.remove("hide");
+  restart.classList.remove("hide");
   console.log("Body eaten");
 };
+
 let hasPressedValid = (pressed, previous) => {
   return (
     Object.keys(opposite).includes(pressed) && pressed !== opposite[previous]
   );
 };
+
 let moveSnake = (pressed) => {
   if (!hasPressedValid(pressed.key, previous.key))
     pressed = { key: previous.key };
@@ -179,35 +211,49 @@ let moveSnake = (pressed) => {
 };
 
 // creating interval
-let createInterval = (pressed) => {
+let createInterval = () => {
   document.onkeydown = (events) => (pressed = events);
+  // if (!hasPressedValid(pressed.key, previous.key))
+  //   pressed = { key: "ArrowRight" };
+  // if (pressed.key === "ArrowLeft") pressed = { key: "ArrowRight" };
   previous = { key: pressed.key };
-  if (!hasPressedValid(pressed.key, previous.key))
-    pressed = { key: "ArrowRight" };
-  myInterval = setInterval(() => moveSnake(pressed), 200);
+  myInterval = setInterval(() => moveSnake(pressed), 175 - speed);
 };
-resetPage();
+
+restartPage();
 // KeyDown event hadler to move snake
-document.onkeydown = function (pressed) {
-  createInterval(pressed);
+document.onkeydown = function (event) {
+  pressed = { key: event.key };
+  if (Object.keys(opposite).includes(pressed.key) && !isEatingBody(pressed.key))
+    createInterval();
 };
 
 pause.addEventListener("click", pauseGame);
 resume.addEventListener("click", resumeGame);
-reset.addEventListener("click", () => {
-  resetPage();
-  document.onkeydown = function (pressed) {
-    createInterval(pressed);
+restart.addEventListener("click", () => {
+  restartPage();
+  document.onkeydown = function (event) {
+    pressed = { key: event.key };
+    if (
+      Object.keys(opposite).includes(pressed.key) &&
+      !isEatingBody(pressed.key)
+    )
+      createInterval();
   };
 });
 document.onkeyup = function (events) {
   if (events.key === " ") {
-    if (pause.classList[0] && reset.classList[0]) resumeGame();
-    else if (resume.classList[0] && reset.classList[0]) pauseGame();
+    if (pause.classList[0] && restart.classList[0]) resumeGame();
+    else if (resume.classList[0] && restart.classList[0]) pauseGame();
     else {
-      resetPage();
-      document.onkeydown = function (pressed) {
-        createInterval(pressed);
+      restartPage();
+      document.onkeydown = function (event) {
+        pressed = { key: event.key };
+        if (
+          Object.keys(opposite).includes(pressed.key) &&
+          !isEatingBody(pressed.key)
+        )
+          createInterval();
       };
     }
   }
