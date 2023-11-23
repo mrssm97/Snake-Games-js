@@ -76,8 +76,8 @@ let restartPage = () => {
   });
   startBtn.classList.add("flex");
   startBtn.classList.remove("hide");
-  arrowButton.classList.add("grid");
-  arrowButton.classList.remove("hide");
+  arrowButton.classList.add("hide");
+  arrowButton.classList.remove("grid");
   pause.classList.remove("hide");
   resume.classList.add("hide");
   restart.classList.add("hide");
