@@ -55,9 +55,11 @@ body {
   opacity: 0.8;
   border-radius: 3%;
   z-index: 1;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
 }
 .center {
   height: 80%;
@@ -135,13 +137,17 @@ body {
   }
 
   .neon {
-    height: 90%;
+    position: absolute;
+    top: 50px;
+    height: 96%;
     width: 100%;
   }
   .center {
     height: 100%;
     width: 93%;
-    margin-top: 40px;
+    position: absolute;
+    top: 20px;
+    /* padding-top: 40px; */
     flex-direction: column;
     justify-content: space-between;
   }
@@ -152,6 +158,8 @@ body {
     aspect-ratio: 1/1 !important;
   }
   .info {
+    position: absolute;
+    bottom: 20px;
     height: 30%;
     width: 100%;
   }
