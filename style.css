@@ -172,13 +172,18 @@ body {
     grid-template: repeat(3, 33.333%) / repeat(3, 33.333%);
   }
   .arrow-buttons {
-    height: 25%;
+    height: 20%;
     width: 100%;
     z-index: 3;
   }
   .arrow-buttons button {
+    height: 80%;
+    width: 100%;
     background-color: transparent;
     color: white;
+  }
+  .arrow-buttons button span {
+    font-size: 30px;
   }
   .flex {
     display: flex;
@@ -197,9 +202,7 @@ body {
     font-size: 50px;
     color: white;
   }
-  .arrow-buttons button span {
-    font-size: 50px;
-  }
+
   .arrow-buttons .btn-left {
     grid-area: 2/1/3/2;
   }
