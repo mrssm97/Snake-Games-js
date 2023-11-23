@@ -169,13 +169,13 @@ body {
     width: 100%;
   }
   .background {
-    justify-content: space-around;
+    justify-content: space-between;
   }
   .background h1 {
-    width: 50%;
+    width: 70%;
   }
   .background h2 {
-    width: 50%;
+    width: 30%;
   }
 
   .toggle {
