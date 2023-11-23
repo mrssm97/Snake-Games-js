@@ -54,7 +54,7 @@ body {
   height: 480px;
   width: 1000px;
   background: linear-gradient(black, #743ad5, black, #d53a9d, black);
-  opacity: 0.8;
+  opacity: 0.88;
   border-radius: 3%;
   z-index: 1;
   position: absolute;
@@ -126,7 +126,7 @@ body {
   width: 20px;
   box-sizing: border-box;
   background-color: rgb(206, 242, 242);
-  opacity: 0.95;
+  opacity: 0.9;
   border: 0.02px solid white;
 }
 
