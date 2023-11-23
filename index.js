@@ -74,6 +74,10 @@ let restartPage = () => {
   [1, 20, 381, 400].forEach((i) => {
     document.querySelector(`.box :nth-child(${i})`).style.borderRadius = "5px";
   });
+  startBtn.classList.add("flex");
+  startBtn.classList.remove("hide");
+  arrowButton.classList.add("grid");
+  arrowButton.classList.remove("hide");
   pause.classList.remove("hide");
   resume.classList.add("hide");
   restart.classList.add("hide");
