@@ -4,6 +4,12 @@
   /* box-sizing: border-box; */
   overflow: hidden;
 }
+body {
+  background-image: url("assets/mainBackground.jpg");
+  background-size: 100% 100%;
+  background-repeat: repeat-y;
+  /* background-repeat: repeat-x; */
+}
 .main {
   height: 100vh;
   width: 100%;
@@ -137,6 +143,10 @@
   padding-top: 140px;
 }
 @media only screen and (min-width: 0px) and (max-width: 768px) {
+  body {
+    background-size: 100% 40%;
+    background-repeat: repeat-y;
+  }
   .mainBackground {
     position: absolute;
     top: 0;
