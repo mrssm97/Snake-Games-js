@@ -14,6 +14,9 @@ body {
   height: 100vh;
   width: 100%;
   box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .background {
   position: absolute;
@@ -31,11 +34,6 @@ body {
   text-align: center;
   z-index: 1000;
 }
-.mainBackground {
-  z-index: 0;
-  height: 100%;
-  width: inherit;
-}
 /* .back-img {
   position: absolute;
   z-index: 1;
@@ -51,70 +49,59 @@ body {
   opacity: 0.9;
 } */
 .neon {
-  height: 480px;
-  width: 1000px;
+  height: 65%;
+  width: 65%;
   background: linear-gradient(black, #743ad5, black, #d53a9d, black);
   opacity: 0.8;
   border-radius: 3%;
   z-index: 1;
-  position: absolute;
-  top: 20%;
-  left: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .center {
-  height: 415px;
-  width: 950px;
+  height: 80%;
+  width: 90%;
   background-color: transparent;
   display: flex;
   justify-content: space-around;
-  position: absolute;
-  top: 40px;
-  left: 45px;
 }
 .info {
-  height: 400px;
-  width: 415px;
+  height: 100%;
+  width: 48%;
   background-color: black;
   opacity: 0.75;
   color: white;
   font-family: "Black Ops One", cursive;
-  display: grid;
-  grid-template: repeat(3, 33.3333%) / repeat(4, 25%);
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
   z-index: 2;
 }
 .score {
-  grid-area: 1/1/2/5;
-  position: relative;
   text-align: center;
-  top: 35px;
 }
 .toggle {
-  width: 280px;
-  height: 100px;
+  width: 40%;
+  height: 20%;
   background-color: transparent;
   color: white;
   font-family: "Black Ops One", cursive;
   cursor: pointer;
   font-size: medium;
-  grid-area: 2/1/3/5;
-  position: relative;
-  left: 75px;
-  top: 10px;
 }
 .hide {
   display: none;
 }
 
 .hScore {
-  grid-area: 3/1/4/5;
-  position: relative;
   text-align: center;
-  top: 50px;
 }
 .box {
-  height: 400px;
-  width: 400px;
+  height: 100%;
+  /* width: 48%; */
+  aspect-ratio: 1/1;
   padding: 2px;
   background-color: transparent;
   display: flex;
@@ -122,8 +109,8 @@ body {
   z-index: 2;
 }
 .box div {
-  height: 20px;
-  width: 20px;
+  height: 5%;
+  width: 5%;
   box-sizing: border-box;
   background-color: rgb(206, 242, 242);
   opacity: 0.9;
@@ -133,52 +120,35 @@ body {
 .gameOver {
   height: 100%;
   width: 100%;
-  font-family: "Black Ops One", cursive;
-  text-align: center;
   background-color: rgb(116, 240, 240);
   opacity: 0.4;
+  font-family: "Black Ops One", cursive;
   color: red;
-  position: relative;
-  box-sizing: border-box;
-  padding-top: 140px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 @media only screen and (min-width: 0px) and (max-width: 768px) {
   body {
     background-size: 100% 40%;
     background-repeat: repeat-y;
   }
-  .mainBackground {
-    position: absolute;
-    top: 0;
-    z-index: 0;
-    height: 100%;
-    width: 100%;
-  }
+
   .neon {
     height: 90%;
     width: 100%;
-    top: 8%;
-    left: 0px;
   }
   .center {
     height: 100%;
-    width: 92%;
+    width: 93%;
     flex-direction: column;
-    justify-content: space-around;
-
-    top: 0;
-    left: 14px;
+  }
+  .box {
+    height: 50%;
+    /* width: 100%; */
   }
   .info {
-    height: 40%;
+    height: 30%;
     width: 100%;
-  }
-  .toggle {
-    grid-area: 2/1/3/4;
-    left: 40px;
-    top: 10px;
-  }
-  .hScore {
-    top: 25px;
   }
 }

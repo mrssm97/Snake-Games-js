@@ -176,7 +176,7 @@ let isEatingBody = (keys) => {
 
 // After eating body game over.
 let eatBody = () => {
-  box.innerHTML = "<h1 class='gameOver'>Game Over! </h1>";
+  box.innerHTML = "<h1 class='gameOver'>Game Over!</h1>";
   clearInterval(myInterval);
   // using local storage for storing highScore
   if (
