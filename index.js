@@ -6,6 +6,15 @@ let resume = document.getElementById("resume");
 let pause = document.getElementById("pause");
 let toggle = document.querySelector(".toggle");
 let restart = document.querySelector("#restart");
+let btnLeft = document.querySelector(".btn-left");
+let btnUp = document.querySelector(".btn-up");
+let btnRight = document.querySelector(".btn-right");
+let btnDown = document.querySelector(".btn-down");
+let startBtn = document.querySelector(".start-button button");
+let startBtnDiv = document.querySelector(".start-button");
+let arrowButton = document.querySelector(".arrow-buttons");
+let clicked = false;
+// console.log(pause);
 let initalTail;
 let myInterval;
 let previous;
@@ -222,10 +231,34 @@ let createInterval = () => {
 
 restartPage();
 // KeyDown event hadler to move snake
+console.log(btnUp.onclick);
 document.onkeydown = function (event) {
   pressed = { key: event.key };
   if (Object.keys(opposite).includes(pressed.key) && !isEatingBody(pressed.key))
     createInterval();
+};
+
+// function initializeButtonClick(){}
+startBtn.onclick = function () {
+  pressed = { key: "ArrowRight" };
+  if (Object.keys(opposite).includes(pressed.key) && !isEatingBody(pressed.key))
+    createInterval();
+  startBtnDiv.classList.remove("flex");
+  startBtn.classList.add("hide");
+  arrowButton.classList.remove("hide");
+  arrowButton.classList.add("grid");
+};
+btnUp.onclick = function (e) {
+  pressed = { key: "ArrowUp" };
+};
+btnLeft.onclick = function (e) {
+  pressed = { key: "ArrowLeft" };
+};
+btnRight.onclick = function (e) {
+  pressed = { key: "ArrowRight" };
+};
+btnDown.onclick = function (e) {
+  pressed = { key: "ArrowDown" };
 };
 
 pause.addEventListener("click", pauseGame);
