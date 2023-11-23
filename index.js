@@ -86,6 +86,10 @@ let restartPage = () => {
 };
 
 let pauseGame = () => {
+  startBtn.classList.add("flex");
+  startBtn.classList.remove("hide");
+  arrowButton.classList.add("hide");
+  arrowButton.classList.remove("grid");
   resume.classList.remove("hide");
   pause.classList.add("hide");
   clearInterval(myInterval);
