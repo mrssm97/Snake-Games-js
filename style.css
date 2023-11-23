@@ -153,4 +153,8 @@ body {
     height: 30%;
     width: 100%;
   }
+  .toggle {
+    height: 35%;
+    width: 60%;
+  }
 }
