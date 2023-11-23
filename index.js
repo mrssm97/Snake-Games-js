@@ -74,8 +74,8 @@ let restartPage = () => {
   [1, 20, 381, 400].forEach((i) => {
     document.querySelector(`.box :nth-child(${i})`).style.borderRadius = "5px";
   });
-  startBtn.classList.add("flex");
-  startBtn.classList.remove("hide");
+  startBtnDiv.classList.add("flex");
+  startBtnDiv.classList.remove("hide");
   arrowButton.classList.add("hide");
   arrowButton.classList.remove("grid");
   pause.classList.remove("hide");
@@ -86,8 +86,8 @@ let restartPage = () => {
 };
 
 let pauseGame = () => {
-  startBtn.classList.add("flex");
-  startBtn.classList.remove("hide");
+  startBtnDiv.classList.add("flex");
+  startBtnDiv.classList.remove("hide");
   arrowButton.classList.add("hide");
   arrowButton.classList.remove("grid");
   resume.classList.remove("hide");
@@ -252,7 +252,7 @@ startBtn.onclick = function () {
   if (Object.keys(opposite).includes(pressed.key) && !isEatingBody(pressed.key))
     createInterval();
   startBtnDiv.classList.remove("flex");
-  startBtn.classList.add("hide");
+  startBtnDiv.classList.add("hide");
   arrowButton.classList.remove("hide");
   arrowButton.classList.add("grid");
 };

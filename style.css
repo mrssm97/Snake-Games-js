@@ -172,14 +172,14 @@ body {
     grid-template: repeat(3, 33.333%) / repeat(3, 33.333%);
   }
   .arrow-buttons {
-    height: 20%;
+    height: 15%;
     width: 100%;
     z-index: 3;
   }
   .arrow-buttons button {
     height: 80%;
     width: 100%;
-    background-color: transparent;
+    background-color: black;
     color: white;
   }
   .arrow-buttons button span {
@@ -196,7 +196,7 @@ body {
     z-index: 3;
   }
   .start-button button {
-    background-color: transparent;
+    background-color: green;
     height: 50%;
     width: 90%;
     font-size: 50px;
