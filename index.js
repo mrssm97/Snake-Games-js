@@ -99,7 +99,7 @@ let resumeGame = () => {
   pause.classList.remove("hide");
   resume.classList.add("hide");
 
-  pressed = { key: "ArrowRight" };
+  // pressed = { key: "ArrowRight" };
   if (Object.keys(opposite).includes(pressed.key) && !isEatingBody(pressed.key))
     createInterval();
   startBtnDiv.classList.remove("flex");
