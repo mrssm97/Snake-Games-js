@@ -255,6 +255,10 @@ startBtn.onclick = function () {
   startBtnDiv.classList.add("hide");
   arrowButton.classList.remove("hide");
   arrowButton.classList.add("flex");
+
+  pause.classList.remove("hide");
+  resume.classList.add("hide");
+  restart.classList.add("hide");
 };
 btnUp.onclick = function (e) {
   pressed = { key: "ArrowUp" };
