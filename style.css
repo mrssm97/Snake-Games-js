@@ -169,15 +169,24 @@ body {
   }
   .grid {
     display: grid;
+    place-items: center;
     grid-template: repeat(3, 33.333%) / repeat(3, 33.333%);
   }
-  .arrow-buttons {
-    height: 15%;
+
+  .button-compressed {
+    position: relative;
+    bottom: 20px;
+    /* background-color: #743ad5; */
+    height: 18%;
     width: 100%;
+  }
+  .arrow-buttons {
+    height: 100%;
+    width: 50%;
     z-index: 3;
   }
   .arrow-buttons button {
-    height: 80%;
+    height: 100%;
     width: 100%;
     background-color: black;
     color: white;

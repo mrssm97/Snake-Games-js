@@ -12,7 +12,7 @@ let btnRight = document.querySelector(".btn-right");
 let btnDown = document.querySelector(".btn-down");
 let startBtn = document.querySelector(".start-button button");
 let startBtnDiv = document.querySelector(".start-button");
-let arrowButton = document.querySelector(".arrow-buttons");
+let arrowButton = document.querySelector(".button-compressed");
 let clicked = false;
 // console.log(pause);
 let initalTail;
@@ -77,7 +77,7 @@ let restartPage = () => {
   startBtnDiv.classList.add("flex");
   startBtnDiv.classList.remove("hide");
   arrowButton.classList.add("hide");
-  arrowButton.classList.remove("grid");
+  arrowButton.classList.remove("flex");
   pause.classList.remove("hide");
   resume.classList.add("hide");
   restart.classList.add("hide");
@@ -89,7 +89,7 @@ let pauseGame = () => {
   startBtnDiv.classList.add("flex");
   startBtnDiv.classList.remove("hide");
   arrowButton.classList.add("hide");
-  arrowButton.classList.remove("grid");
+  arrowButton.classList.remove("flex");
   resume.classList.remove("hide");
   pause.classList.add("hide");
   clearInterval(myInterval);
@@ -254,7 +254,7 @@ startBtn.onclick = function () {
   startBtnDiv.classList.remove("flex");
   startBtnDiv.classList.add("hide");
   arrowButton.classList.remove("hide");
-  arrowButton.classList.add("grid");
+  arrowButton.classList.add("flex");
 };
 btnUp.onclick = function (e) {
   pressed = { key: "ArrowUp" };
