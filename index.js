@@ -99,6 +99,14 @@ let resumeGame = () => {
   pause.classList.remove("hide");
   resume.classList.add("hide");
 
+  pressed = { key: "ArrowRight" };
+  if (Object.keys(opposite).includes(pressed.key) && !isEatingBody(pressed.key))
+    createInterval();
+  startBtnDiv.classList.remove("flex");
+  startBtnDiv.classList.add("hide");
+  arrowButton.classList.remove("hide");
+  arrowButton.classList.add("flex");
+
   document.onkeydown = function (event) {
     pressed = { key: event.key };
     if (
