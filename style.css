@@ -177,12 +177,12 @@ body {
     position: relative;
     bottom: 20px;
     /* background-color: #743ad5; */
-    height: 18%;
+    height: 22%;
     width: 100%;
   }
   .arrow-buttons {
     height: 100%;
-    width: 50%;
+    width: 68%;
     z-index: 3;
   }
   .arrow-buttons button {
@@ -192,7 +192,7 @@ body {
     color: white;
   }
   .arrow-buttons button span {
-    font-size: 30px;
+    font-size: 50px;
   }
   .flex {
     display: flex;
